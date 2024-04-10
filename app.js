@@ -104,8 +104,11 @@ function checkmatch(){
     const optionOneId = cardsChosenIds[0];
     const optionTwoId = cardsChosenIds[1];
 
-if(cardsChosen [0] == cardsChosen[1]){
-    alert("Encontraste um Par");
+if(optionOneId == optionTwoId){
+    alert("Você clicou na mesma carta");
+    cards[optionOneId].setAttribute("src", imgPath + "blank.png");
+} else if (cardsChosen[0] == cardsChosen[1]) {
+alert("Encontraste um Par");
     cards[optionOneId].setAttribute("src", imgPath +"white--removebg-preview (1).png");
     cards[optionTwoId].setAttribute("src", imgPath +"white--removebg-preview (1).png");
         cards[optionOneId].removeEventListener("click", flipCard);
