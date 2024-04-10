@@ -65,11 +65,12 @@ console.log(cardArray);
 
 
 const gridDisplay = document.getElementById("grid"); 
+const resultDisplay = document.getElementById("result"); 
 const cardsQty = cardArray.length;
 const imgPath = "img/"
 let cardsChosen = [];
 let cardsChosenIds = [];
-let cardswon = [];
+let cardsWon = [];
 
 function createBoard() {
 for (let i = 0; i < cardsQty; i++) {
@@ -104,6 +105,7 @@ if(cardsChosen [0] == cardsChosen[1]){
     cards [cardsChosenIds[1]].setAttribute("src", imgPath +"white.png");
     cards [cardsChosenIds[0]].removeEventListener("click",flipCard);
     cards [cardsChosenIds[1]].removeEventListener("click",flipCard);
+    cardsWon.push(cardsChosen);
     
 }else{
     alert("Tente outra vez");
@@ -114,4 +116,12 @@ if(cardsChosen [0] == cardsChosen[1]){
 cardsChosen = [];
 cardsChosenIds = [];
 
+if(cardsWon.length < cardArray.length /2){
+resultDisplay.innerHTML = cardsWon.length;
+}else{
+
+resultDisplay.innerHTML = "Parabéns!";
 }
+}
+
+
