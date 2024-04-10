@@ -61,8 +61,6 @@ const cardArray= [
 
 ];
 cardArray.sort(() => Math.random() -0,5); 
-console.log(cardArray); 
-
 
 const gridDisplay = document.getElementById("grid"); 
 const resultDisplay = document.getElementById("result"); 
