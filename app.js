@@ -1,62 +1,62 @@
 const cardArray= [
 {
     name: "cheeseburger",
-    img: "cheeseburger.png",
+    img: "cheeseburger-removebg-preview (1).png",
 },
 
 {
     name: "fries",
-    img: "fries.png",
+    img: "fries-removebg-preview.png",
 },
 
 {
     name: "hotdog",
-    img: "hotdog.png",
+    img: "hotdog-removebg-preview.png",
 },
 
 {
     name: "ice-cream",
-    img: "ice-cream.png",
+    img: "ice-cream-removebg-preview.png",
 },
 
 {
     name: "milkshake",
-    img: "milkshake.png",
+    img: "milkshake-removebg-preview.png",
 },
 
 {
     name: "pizza",
-    img: "pizza.png",
+    img: "pizza-removebg-preview.png",
 },
 
 {
     name: "cheeseburger",
-    img: "cheeseburger.png",
+    img: "cheeseburger-removebg-preview (1).png",
 },
 
 {
     name: "fries",
-    img: "fries.png",
+    img: "fries-removebg-preview.png",
 },
 
 {
     name: "hotdog",
-    img: "hotdog.png",
+    img: "hotdog-removebg-preview.png",
 },
 
 {
     name: "ice-cream",
-    img: "ice-cream.png",
+    img: "ice-cream-removebg-preview.png",
 },
 
 {
     name: "milkshake",
-    img: "milkshake.png",
+    img: "milkshake-removebg-preview.png",
 },
 
 {
     name: "pizza",
-    img: "pizza.png",
+    img: "pizza-removebg-preview.png",
 },
 
 ];
@@ -71,6 +71,8 @@ const imgPath = "img/"
 let cardsChosen = [];
 let cardsChosenIds = [];
 let cardsWon = [];
+let tentativa = 1;
+let timeStart;
 
 function createBoard() {
 for (let i = 0; i < cardsQty; i++) {
@@ -86,6 +88,9 @@ gridDisplay.appendChild(card);
 createBoard();
 
 function flipCard(){
+    if (timeStart == undefined) {
+        timeStart = Date.now();
+    }
     const cardId = this.getAttribute("data-id");
     this.setAttribute("src", imgPath + cardArray[cardId].img);
     cardsChosen.push(cardArray[cardId].name);
@@ -98,19 +103,21 @@ function flipCard(){
 
 function checkmatch(){
     const cards = document.querySelectorAll("#grid img");
+    const optionOneId = cardsChosenIds[0];
+    const optionTwoId = cardsChosenIds[1];
 
 if(cardsChosen [0] == cardsChosen[1]){
     alert("Encontraste um Par");
-    cards [cardsChosenIds[0]].setAttribute("src", imgPath +"white.png");
-    cards [cardsChosenIds[1]].setAttribute("src", imgPath +"white.png");
-    cards [cardsChosenIds[0]].removeEventListener("click",flipCard);
-    cards [cardsChosenIds[1]].removeEventListener("click",flipCard);
-    cardsWon.push(cardsChosen);
+    cards[optionOneId].setAttribute("src", imgPath +"white--removebg-preview (1).png");
+    cards[optionTwoId].setAttribute("src", imgPath +"white--removebg-preview (1).png");
+        cards[optionOneId].removeEventListener("click", flipCard);
+        cards[optionTwoId].removeEventListener("click", flipCard);
+        cardsWon.push(cardsChosen);
     
 }else{
     alert("Tente outra vez");
-    cards [cardsChosenIds[0]].setAttribute("src", imgPath +"blank.png");
-    cards [cardsChosenIds[1]].setAttribute("src", imgPath +"blank.png");
+    cards[optionOneId].setAttribute("src", imgPath + "blank.png");
+    cards[optionTwoId].setAttribute("src", imgPath + "blank.png");
 }
 
 cardsChosen = [];
@@ -120,8 +127,14 @@ if(cardsWon.length < cardArray.length /2){
 resultDisplay.innerHTML = cardsWon.length;
 }else{
 
+const timeTotal = math.floor((Date.now() - TimeStart) / 1000);
 resultDisplay.innerHTML = "Parabéns!";
+resultDisplay.innerHTML +=`À ${tentativa}ª tentativa.`;
+resultDisplay.innerHTML +=`Demorante ${tentativa}ª segundo.`;
+
 }
+
+tentativa++; // INCREMENTAR TENTATIVA
 }
 
 
